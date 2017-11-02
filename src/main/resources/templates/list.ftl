@@ -85,7 +85,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr dir-paginate="u in ctrl.getAllUsers() | orderBy:sortType:sortReverse | filter:searchUser | itemsPerPage:5">
+                    <tr dir-paginate="u in ctrl.getAllUsers() | orderBy:sortType:sortReverse | filter:searchUser | itemsPerPage: pageSize">
                         <td>{{u.id}}</td>
                         <td>{{u.name}}</td>
                         <td>{{u.age}}</td>
@@ -104,13 +104,22 @@
                     </tbody>
                 </table>
 
-                <dir-pagination-controls
-                        max-size="5"
-                        direction-links="true"
-                        boundary-links="true"
-                        on-page-change="true"
-                        auto-hide="false">
-                </dir-pagination-controls>
+                <div>
+                    <dir-pagination-controls
+                            max-size="5"
+                            direction-links="true"
+                            boundary-links="true"
+                            on-page-change="true"
+                            auto-hide="true">
+                    </dir-pagination-controls>
+
+                    <form>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-bars"></i></div>
+                            <input type="text" class="form-control" placeholder="Number of pages" ng-model="pageSize">
+                        </div>
+                    </form>
+                </div>
 
             </div>
 		</div>

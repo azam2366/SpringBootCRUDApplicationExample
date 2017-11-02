@@ -25,7 +25,7 @@ angular.module('crudApp').controller('UserController',
         $scope.sortType     = 'name'; // set the default sort type
         $scope.sortReverse  = false;  // set the default sort order
         $scope.searchUser   = '';     // set the default search/filter term
-
+        $scope.pageSize   = 5;
 
         function submit() {
             console.log('Submitting');
