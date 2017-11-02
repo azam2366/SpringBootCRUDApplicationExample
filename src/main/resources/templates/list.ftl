@@ -104,23 +104,24 @@
                     </tbody>
                 </table>
 
-                <div>
-                    <dir-pagination-controls
-                            max-size="5"
-                            direction-links="true"
-                            boundary-links="true"
-                            on-page-change="true"
-                            auto-hide="true">
-                    </dir-pagination-controls>
-
-                    <form>
-                        <div class="input-group">
+                <div class="pag">
+                    <div id="con1">
+                        <dir-pagination-controls
+                                max-size="5"
+                                direction-links="true"
+                                boundary-links="true"
+                                on-page-change="true"
+                                auto-hide="true">
+                        </dir-pagination-controls>
+                    </div>
+                    <div id="con2">
+                        <div id="pagesize" class="input-group">
                             <div class="input-group-addon"><i class="fa fa-bars"></i></div>
-                            <input type="text" class="form-control" placeholder="Number of pages" ng-model="pageSize">
+                            <input type="text" class="form-control" placeholder="Number of pages"
+                                   ng-model="pageSize">
                         </div>
-                    </form>
+                    </div>
                 </div>
-
             </div>
 		</div>
     </div>
