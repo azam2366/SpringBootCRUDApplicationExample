@@ -109,13 +109,17 @@ angular.module('crudApp').controller('UserController',
                 }
             );
         }
+
         function reset(){
             self.successMessage='';
             self.errorMessage='';
             self.user={};
             $scope.myForm.$setPristine(); //reset Form
         }
-    }
 
+        $scope.sort = function(keyname){
+            $scope.sortType = keyname;   //set the sortKey to the param passed
+            $scope.sortReverse = !$scope.sortReverse; //if true make it false and vice versa
+        }
 
-    ]);
+    }]);

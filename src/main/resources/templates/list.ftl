@@ -68,24 +68,24 @@
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <td><a href="#" ng-click="sortType = 'id'; sortReverse = !sortReverse">
+                        <th><a href="#" ng-click="sort('id')">
                             ID <span ng-show="sortType == 'id' && !sortReverse" class="fa fa-caret-down"></span>
-                            <span ng-show="sortType == 'id' && sortReverse" class="fa fa-caret-up"></span></a></td>
-                        <td><a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+                            <span ng-show="sortType == 'id' && sortReverse" class="fa fa-caret-up"></span></a></th>
+                        <th><a href="#" ng-click="sort('name')">
                             NAME <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
-                            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span></a></td>
-                        <td><a href="#" ng-click="sortType = 'age'; sortReverse = !sortReverse">
+                            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span></a></th>
+                        <th><a href="#" ng-click="sort('age')">
                             AGE <span ng-show="sortType == 'age' && !sortReverse" class="fa fa-caret-down"></span>
-                            <span ng-show="sortType == 'age' && sortReverse" class="fa fa-caret-up"></span></a></td>
-                        <td><a href="#" ng-click="sortType = 'salary'; sortReverse = !sortReverse">
+                            <span ng-show="sortType == 'age' && sortReverse" class="fa fa-caret-up"></span></a></th>
+                        <th><a href="#" ng-click="sort('salary')">
                             SALARY <span ng-show="sortType == 'salary' && !sortReverse" class="fa fa-caret-down"></span>
-                            <span ng-show="sortType == 'salary' && sortReverse" class="fa fa-caret-up"></span></a></td>
-                        <td width="100"></td>
-                        <td width="100"></td>
+                            <span ng-show="sortType == 'salary' && sortReverse" class="fa fa-caret-up"></span></a></th>
+                        <th width="100"></th>
+                        <th width="100"></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="u in ctrl.getAllUsers() | orderBy:sortType:sortReverse | filter:searchUser">
+                    <tr dir-paginate="u in ctrl.getAllUsers() | orderBy:sortType:sortReverse | filter:searchUser | itemsPerPage:5">
                         <td>{{u.id}}</td>
                         <td>{{u.name}}</td>
                         <td>{{u.age}}</td>
@@ -103,6 +103,15 @@
                     </tr>
                     </tbody>
                 </table>
+
+                <dir-pagination-controls
+                        max-size="5"
+                        direction-links="true"
+                        boundary-links="true"
+                        on-page-change="true"
+                        auto-hide="false">
+                </dir-pagination-controls>
+
             </div>
 		</div>
     </div>
