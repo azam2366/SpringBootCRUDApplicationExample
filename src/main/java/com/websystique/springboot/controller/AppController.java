@@ -1,5 +1,7 @@
 package com.websystique.springboot.controller;
 
+import com.websystique.springboot.db.jdbc.JdbcOrganisationRepository;
+import com.websystique.springboot.domain.Organisation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +11,14 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.List;
 import javax.sql.DataSource;
 
 @Controller
 public class AppController {
+
+	@Autowired
+	JdbcOrganisationRepository organisationRepository;
 
 	@Autowired
 	@Qualifier("dsJdbc")
@@ -29,43 +31,12 @@ public class AppController {
 		modal.addAttribute("title","CRUD Example");
 
 		//...
-		String SQL_SELECT =
-				"select distinct(ad.DistinguishedName) from ibases as ib, ADusers as ad where ad.sAMAccountName in (SELECT ib.user FROM ibases WHERE ib.baseparam  like '%DEMO%')";
-
-		Connection conn = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		try {
-			conn = dataSource.getConnection();
-			stmt = conn.prepareStatement(SQL_SELECT);
-			rs = stmt.executeQuery();
-			while (rs.next()) {
-				logger.info(rs.toString());
-					}
-					} catch (SQLException e) {
-			logger.error(e.toString());
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-				}
-			}
-			if (stmt != null) {
-				try {
-					stmt.close();
-				} catch (SQLException e) {
-				}
-			}
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-				}
-			}
-		}
+		List<Organisation> org = organisationRepository.findAll();
+        for(Organisation o: org) logger.info(o.toString());
+        logger.info("---");
+		org = organisationRepository.findDemo();
+        for(Organisation o: org) logger.info(o.toString());
 		//...
-
 
 		return "index";
 	}
