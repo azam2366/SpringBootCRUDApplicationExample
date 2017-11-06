@@ -7,11 +7,25 @@ app.constant('urls', {
 
 app.config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
-
+        $urlRouterProvider.when('', '/list');
         $stateProvider
-            .state('home', {
-                url: '/',
+            .state('list', {
+                url: '/list',
                 templateUrl: 'partials/list',
+                controller:'UserController',
+                controllerAs:'ctrl',
+                resolve: {
+                    users: function ($q, UserService) {
+                        console.log('Load all users');
+                        var deferred = $q.defer();
+                        UserService.loadAllUsers().then(deferred.resolve, deferred.resolve);
+                        return deferred.promise;
+                    }
+                }
+            })
+            .state('list2', {
+                url: '/list2',
+                templateUrl: 'partials/list2',
                 controller:'UserController',
                 controllerAs:'ctrl',
                 resolve: {
