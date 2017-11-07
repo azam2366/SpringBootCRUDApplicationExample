@@ -7,7 +7,12 @@ angular.module('crudApp').controller('UserController',
         self.user = {};
         self.users=[];
 
+        self.orgs=[];
+        self.orgsdemo=[];
+
         self.submit = submit;
+        self.getAllOrgs = getAllOrgs;
+        self.getDemoOrgs = getDemoOrgs;
         self.getAllUsers = getAllUsers;
         self.createUser = createUser;
         self.updateUser = updateUser;
@@ -92,6 +97,13 @@ angular.module('crudApp').controller('UserController',
                 );
         }
 
+        function getAllOrgs(){
+            return UserService.getAllOrgs();
+        }
+
+        function getDemoOrgs(){
+            return UserService.getDemoOrgs();
+        }
 
         function getAllUsers(){
             return UserService.getAllUsers();

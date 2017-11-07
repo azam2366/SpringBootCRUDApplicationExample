@@ -1,8 +1,10 @@
 var app = angular.module('crudApp', ['ui.router','ngStorage','angularUtils.directives.dirPagination']);
 
 app.constant('urls', {
-    BASE: 'http://localhost:8080/',
-    USER_SERVICE_API : 'http://localhost:8080/api/user/'
+    BASE: '/',
+    USER_SERVICE_API : '/api/user/',
+    ORGS_SERVICE_API : '/api/org/',
+    ORGSDEMO_SERVICE_API : '/api/orgdemo/'
 });
 
 app.config(['$stateProvider', '$urlRouterProvider',
@@ -16,23 +18,23 @@ app.config(['$stateProvider', '$urlRouterProvider',
                 controllerAs:'ctrl',
                 resolve: {
                     users: function ($q, UserService) {
-                        console.log('Load all users');
+                        console.log('Load all orgs');
                         var deferred = $q.defer();
-                        UserService.loadAllUsers().then(deferred.resolve, deferred.resolve);
+                        UserService.loadAllOrgs().then(deferred.resolve, deferred.resolve);
                         return deferred.promise;
                     }
                 }
             })
-            .state('list2', {
-                url: '/list2',
-                templateUrl: 'partials/list2',
+            .state('listdemo', {
+                url: '/listdemo',
+                templateUrl: 'partials/listdemo',
                 controller:'UserController',
                 controllerAs:'ctrl',
                 resolve: {
                     users: function ($q, UserService) {
-                        console.log('Load all users');
+                        console.log('Load demo orgs');
                         var deferred = $q.defer();
-                        UserService.loadAllUsers().then(deferred.resolve, deferred.resolve);
+                        UserService.loadDemoOrgs().then(deferred.resolve, deferred.resolve);
                         return deferred.promise;
                     }
                 }

@@ -2,6 +2,8 @@ package com.websystique.springboot.controller;
 
 import java.util.List;
 
+import com.websystique.springboot.db.jdbc.JdbcOrganisationRepository;
+import com.websystique.springboot.domain.Organisation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,34 @@ public class RestApiController {
 
 	@Autowired
 	UserService userService; //Service which will do all data retrieval/manipulation work
+
+	@Autowired
+	JdbcOrganisationRepository organisationRepository; //Service which will do all data retrieval/manipulation work
+
+
+	// -------------------Retrieve All Organisations---------------------------------------------
+
+	@RequestMapping(value = "/org/", method = RequestMethod.GET)
+	public ResponseEntity<List<Organisation>> listAllOrgs() {
+		List<Organisation> orgs = organisationRepository.findAll();
+		if (orgs.isEmpty()) {
+			return new ResponseEntity(HttpStatus.NO_CONTENT);
+			// You many decide to return HttpStatus.NOT_FOUND
+		}
+		return new ResponseEntity<List<Organisation>>(orgs, HttpStatus.OK);
+	}
+
+	// -------------------Retrieve Demo Organisations---------------------------------------------
+
+	@RequestMapping(value = "/orgdemo/", method = RequestMethod.GET)
+	public ResponseEntity<List<Organisation>> listDemoOrgs() {
+		List<Organisation> orgs = organisationRepository.findDemo();
+		if (orgs.isEmpty()) {
+			return new ResponseEntity(HttpStatus.NO_CONTENT);
+			// You many decide to return HttpStatus.NOT_FOUND
+		}
+		return new ResponseEntity<List<Organisation>>(orgs, HttpStatus.OK);
+	}
 
 	// -------------------Retrieve All Users---------------------------------------------
 

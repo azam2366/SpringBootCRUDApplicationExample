@@ -15,7 +15,7 @@
             </div>
             <ul class="nav navbar-nav">
                 <li><a ui-sref="list">Home</a></li>
-                <li><a ui-sref="list2">List 2</a></li>
+                <li><a ui-sref="listdemo">Demo base of organisations</a></li>
             </ul>
         </nav>
 

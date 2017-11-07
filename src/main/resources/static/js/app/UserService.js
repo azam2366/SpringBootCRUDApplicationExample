@@ -5,6 +5,10 @@ angular.module('crudApp').factory('UserService',
         function ($localStorage, $http, $q, urls) {
 
             var factory = {
+                loadAllOrgs: loadAllOrgs,
+                getAllOrgs: getAllOrgs,
+                loadDemoOrgs: loadDemoOrgs,
+                getDemoOrgs: getDemoOrgs,
                 loadAllUsers: loadAllUsers,
                 getAllUsers: getAllUsers,
                 getUser: getUser,
@@ -14,6 +18,42 @@ angular.module('crudApp').factory('UserService',
             };
 
             return factory;
+
+            function loadAllOrgs() {
+                console.log('Fetching all orgs');
+                var deferred = $q.defer();
+                $http.get(urls.ORGS_SERVICE_API)
+                    .then(
+                        function (response) {
+                            console.log('Fetched successfully all orgs');
+                            $localStorage.orgs = response.data;
+                            deferred.resolve(response);
+                        },
+                        function (errResponse) {
+                            console.error('Error while loading orgs');
+                            deferred.reject(errResponse);
+                        }
+                    );
+                return deferred.promise;
+            }
+
+            function loadDemoOrgs() {
+                console.log('Fetching demo orgs');
+                var deferred = $q.defer();
+                $http.get(urls.ORGSDEMO_SERVICE_API)
+                    .then(
+                        function (response) {
+                            console.log('Fetched successfully demo orgs');
+                            $localStorage.orgsdemo = response.data;
+                            deferred.resolve(response);
+                        },
+                        function (errResponse) {
+                            console.error('Error while loading demo orgs');
+                            deferred.reject(errResponse);
+                        }
+                    );
+                return deferred.promise;
+            }
 
             function loadAllUsers() {
                 console.log('Fetching all users');
@@ -31,6 +71,14 @@ angular.module('crudApp').factory('UserService',
                         }
                     );
                 return deferred.promise;
+            }
+
+            function getAllOrgs(){
+                return $localStorage.orgs;
+            }
+
+            function getDemoOrgs(){
+                return $localStorage.orgsdemo;
             }
 
             function getAllUsers(){

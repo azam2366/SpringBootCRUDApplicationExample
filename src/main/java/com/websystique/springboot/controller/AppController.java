@@ -29,15 +29,6 @@ public class AppController {
 	@RequestMapping("/")
 	String home(ModelMap modal) {
 		modal.addAttribute("title","CRUD Example");
-
-		//...
-		List<Organisation> org = organisationRepository.findAll();
-        for(Organisation o: org) logger.info(o.toString());
-        logger.info("---");
-		org = organisationRepository.findDemo();
-        for(Organisation o: org) logger.info(o.toString());
-		//...
-
 		return "index";
 	}
 
