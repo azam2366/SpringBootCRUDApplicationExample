@@ -8,6 +8,7 @@
                     <p>Sort Type: {{ sortType }}</p>
                     <p>Sort Reverse: {{ sortReverse }}</p>
                     <p>Search Query: {{ searchUser }}</p>
+                    <p>Param: {{ org.distinguishedName }}</p>
                 </div>
 
                 <form>
@@ -22,10 +23,10 @@
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th><a href="#" ng-click="sort('displayName')">
+                        <th><a href="#/listdemo" ng-click="sort('displayName')">
                             Display name <span ng-show="sortType == 'displayName' && !sortReverse" class="fa fa-caret-down"></span>
                             <span ng-show="sortType == 'displayName' && sortReverse" class="fa fa-caret-up"></span></a></th>
-                        <th><a href="#" ng-click="sort('distinguishedName')">
+                        <th><a href="#/listdemo" ng-click="sort('distinguishedName')">
                             Distinguished name <span ng-show="sortType == 'distinguishedName' && !sortReverse" class="fa fa-caret-down"></span>
                             <span ng-show="sortType == 'distinguishedName' && sortReverse" class="fa fa-caret-up"></span></a></th>
                     </tr>

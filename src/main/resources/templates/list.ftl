@@ -7,7 +7,7 @@
                 <div class="alert alert-info">
                     <p>Sort Type: {{ sortType }}</p>
                     <p>Sort Reverse: {{ sortReverse }}</p>
-                    <p>Search Query: {{ searchUser }}</p>
+                    <p>Search Query: {{ searchOrg }}</p>
                 </div>
 
                 <form>
@@ -37,13 +37,13 @@
                         <td>{{o.displayName}}</td>
                         <td>{{o.distinguishedName}}</td>
                         <td>
-                            <button type="button" ng-click="ctrl.editUser(u.id)" class="btn btn-success custom-width">
-                                Edit
+                            <button type="button" ng-click="ctrl.getBases(o)" class="btn btn-success custom-width">
+                                Bases
                             </button>
                         </td>
                         <td>
                             <button type="button" ng-click="ctrl.removeUser(u.id)" class="btn btn-danger custom-width">
-                                Remove
+                                Quotes
                             </button>
                         </td>
                     </tr>

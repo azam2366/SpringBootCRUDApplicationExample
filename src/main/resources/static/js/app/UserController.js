@@ -1,18 +1,20 @@
 'use strict';
 
 angular.module('crudApp').controller('UserController',
-    ['UserService', '$scope',  function( UserService, $scope) {
+    ['UserService', '$scope', '$location',  function( UserService, $scope, $location) {
 
         var self = this;
         self.user = {};
         self.users=[];
 
         self.orgs=[];
+        self.org = {};
         self.orgsdemo=[];
 
         self.submit = submit;
         self.getAllOrgs = getAllOrgs;
         self.getDemoOrgs = getDemoOrgs;
+        self.getBases = getBases;
         self.getAllUsers = getAllUsers;
         self.createUser = createUser;
         self.updateUser = updateUser;
@@ -27,7 +29,7 @@ angular.module('crudApp').controller('UserController',
         self.onlyIntegers = /^\d+$/;
         self.onlyNumbers = /^\d+([,.]\d+)?$/;
 
-        $scope.sortType     = 'name'; // set the default sort type
+        $scope.sortType     = 'displayName'; // set the default sort type
         $scope.sortReverse  = false;  // set the default sort order
         $scope.searchUser   = '';     // set the default search/filter term
         $scope.pageSize   = 5;
@@ -103,6 +105,11 @@ angular.module('crudApp').controller('UserController',
 
         function getDemoOrgs(){
             return UserService.getDemoOrgs();
+        }
+
+        function getBases(org) {
+            self.org = org;
+            $location.path("/listdemo");
         }
 
         function getAllUsers(){
