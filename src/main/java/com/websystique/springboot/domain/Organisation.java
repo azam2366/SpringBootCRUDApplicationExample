@@ -5,6 +5,9 @@ public class Organisation {
     private String displayName;
     private String distinguishedName;
 
+    public Organisation() {
+    }
+
     public Organisation(String displayName, String distinguishedName) {
         this.displayName = displayName;
         this.distinguishedName = distinguishedName;

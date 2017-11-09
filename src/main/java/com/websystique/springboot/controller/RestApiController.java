@@ -58,6 +58,24 @@ public class RestApiController {
 		return new ResponseEntity<List<Organisation>>(orgs, HttpStatus.OK);
 	}
 
+	// -------------------Fetchinfg bases of org-------------------------------------------
+
+	@RequestMapping(value = "/orgbases/", method = RequestMethod.POST)
+	public ResponseEntity<?> orgBases(@RequestBody Organisation org, UriComponentsBuilder ucBuilder) {
+		logger.info("Fetching databases of : {}", org);
+
+		/*if (userService.isUserExist(user)) {
+			logger.error("Unable to create. A User with name {} already exist", user.getName());
+			return new ResponseEntity(new CustomErrorType("Unable to create. A User with name " +
+					user.getName() + " already exist."),HttpStatus.CONFLICT);
+		}
+		userService.saveUser(user);*/
+
+		HttpHeaders headers = new HttpHeaders();
+//		headers.setLocation(ucBuilder.path("/api/user/{id}").buildAndExpand(user.getId()).toUri());
+		return new ResponseEntity<String>(headers, HttpStatus.CREATED);
+	}
+
 	// -------------------Retrieve All Users---------------------------------------------
 
 	@RequestMapping(value = "/user/", method = RequestMethod.GET)

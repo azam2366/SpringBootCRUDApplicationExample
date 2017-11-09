@@ -108,7 +108,22 @@ angular.module('crudApp').controller('UserController',
         }
 
         function getBases(org) {
-            self.org = org;
+            UserService.loadBases(org)
+                .then(
+                    function (response) {
+                        console.log('Demo DB load successfully');
+                        self.successMessage = 'Demo DB load successfully';
+                        self.errorMessage='';
+                        self.done = true;
+                        self.orgsdemo=response;
+                        $scope.myForm.$setPristine();
+                    },
+                    function (errResponse) {
+                        console.error('Error while Demo DB loading');
+                        self.errorMessage = 'Error while Demo DB loading: ' + errResponse.data.errorMessage;
+                        self.successMessage='';
+                    }
+                );
             $location.path("/listdemo");
         }
 

@@ -4,7 +4,8 @@ app.constant('urls', {
     BASE: '/',
     USER_SERVICE_API : '/api/user/',
     ORGS_SERVICE_API : '/api/org/',
-    ORGSDEMO_SERVICE_API : '/api/orgdemo/'
+    ORGSDEMO_SERVICE_API : '/api/orgdemo/',
+    ORGBASES_SERVICE_API : '/api/orgbases/'
 });
 
 app.config(['$stateProvider', '$urlRouterProvider',

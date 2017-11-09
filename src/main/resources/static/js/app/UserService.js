@@ -9,6 +9,7 @@ angular.module('crudApp').factory('UserService',
                 getAllOrgs: getAllOrgs,
                 loadDemoOrgs: loadDemoOrgs,
                 getDemoOrgs: getDemoOrgs,
+                loadBases: loadBases,
                 loadAllUsers: loadAllUsers,
                 getAllUsers: getAllUsers,
                 getUser: getUser,
@@ -53,6 +54,22 @@ angular.module('crudApp').factory('UserService',
                         }
                     );
                 return deferred.promise;
+            }
+
+            function loadBases(org) {
+                console.log('Fetching bases of orgs');
+                var deferred = $q.defer();
+                $http.post(urls.ORGBASES_SERVICE_API, org)
+                    .then(
+                        function (response) {
+                            deferred.resolve(response.data);
+                        },
+                        function (errResponse) {
+                            console.error('Error while fetching bases of orgs : '+errResponse.data.errorMessage);
+                            deferred.reject(errResponse);
+                        }
+                    );
+                return response.data;
             }
 
             function loadAllUsers() {
