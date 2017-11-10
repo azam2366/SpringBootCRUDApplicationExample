@@ -62,14 +62,15 @@ angular.module('crudApp').factory('UserService',
                 $http.post(urls.ORGBASES_SERVICE_API, org)
                     .then(
                         function (response) {
-                            deferred.resolve(response.data);
+                            $localStorage.orgbases = response.data;
+                            deferred.resolve(response);
                         },
                         function (errResponse) {
                             console.error('Error while fetching bases of orgs : '+errResponse.data.errorMessage);
                             deferred.reject(errResponse);
                         }
                     );
-                return response.data;
+                return deferred.promise;
             }
 
             function loadAllUsers() {

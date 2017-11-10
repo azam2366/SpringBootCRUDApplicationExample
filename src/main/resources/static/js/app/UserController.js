@@ -10,6 +10,7 @@ angular.module('crudApp').controller('UserController',
         self.orgs=[];
         self.org = {};
         self.orgsdemo=[];
+        self.orgbases = [];
 
         self.submit = submit;
         self.getAllOrgs = getAllOrgs;
@@ -115,7 +116,7 @@ angular.module('crudApp').controller('UserController',
                         self.successMessage = 'Demo DB load successfully';
                         self.errorMessage='';
                         self.done = true;
-                        self.orgsdemo=response;
+                        self.orgbases=response;
                         $scope.myForm.$setPristine();
                     },
                     function (errResponse) {

@@ -64,16 +64,8 @@ public class RestApiController {
 	public ResponseEntity<?> orgBases(@RequestBody Organisation org, UriComponentsBuilder ucBuilder) {
 		logger.info("Fetching databases of : {}", org);
 
-		/*if (userService.isUserExist(user)) {
-			logger.error("Unable to create. A User with name {} already exist", user.getName());
-			return new ResponseEntity(new CustomErrorType("Unable to create. A User with name " +
-					user.getName() + " already exist."),HttpStatus.CONFLICT);
-		}
-		userService.saveUser(user);*/
-
-		HttpHeaders headers = new HttpHeaders();
-//		headers.setLocation(ucBuilder.path("/api/user/{id}").buildAndExpand(user.getId()).toUri());
-		return new ResponseEntity<String>(headers, HttpStatus.CREATED);
+		List<Organisation> orgs = organisationRepository.findDemo();
+		return new ResponseEntity<List<Organisation>>(orgs, HttpStatus.CREATED);
 	}
 
 	// -------------------Retrieve All Users---------------------------------------------
