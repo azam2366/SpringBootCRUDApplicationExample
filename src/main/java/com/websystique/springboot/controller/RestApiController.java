@@ -1,5 +1,6 @@
 package com.websystique.springboot.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.websystique.springboot.db.jdbc.JdbcOrganisationRepository;
@@ -64,7 +65,9 @@ public class RestApiController {
 	public ResponseEntity<?> orgBases(@RequestBody Organisation org, UriComponentsBuilder ucBuilder) {
 		logger.info("Fetching databases of : {}", org);
 
-		List<Organisation> orgs = organisationRepository.findDemo();
+		List<Organisation> orgs = new ArrayList<Organisation>();
+		orgs.add(new Organisation("Abc", "Def"));
+		orgs.add(new Organisation("Xyz", "123"));
 		return new ResponseEntity<List<Organisation>>(orgs, HttpStatus.CREATED);
 	}
 
