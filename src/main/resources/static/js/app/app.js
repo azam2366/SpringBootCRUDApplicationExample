@@ -39,6 +39,12 @@ app.config(['$stateProvider', '$urlRouterProvider',
                         return deferred.promise;
                     }
                 }
+            })
+            .state('listquotes', {
+                url: '/listquotes',
+                templateUrl: 'partials/listquotes',
+                controller:'UserController',
+                controllerAs:'ctrl'
             });
         $urlRouterProvider.otherwise('/');
     }]);

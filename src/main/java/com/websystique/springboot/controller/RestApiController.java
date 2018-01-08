@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.websystique.springboot.db.jdbc.JdbcOrganisationRepository;
 import com.websystique.springboot.domain.Organisation;
+import com.websystique.springboot.domain.QuoteSpace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,10 +66,12 @@ public class RestApiController {
 	public ResponseEntity<?> orgBases(@RequestBody Organisation org, UriComponentsBuilder ucBuilder) {
 		logger.info("Fetching databases of : {}", org);
 
-		List<Organisation> orgs = new ArrayList<Organisation>();
+		/*List<Organisation> orgs = new ArrayList<Organisation>();
 		orgs.add(new Organisation("Abc", "Def"));
-		orgs.add(new Organisation("Xyz", "123"));
-		return new ResponseEntity<List<Organisation>>(orgs, HttpStatus.CREATED);
+		orgs.add(new Organisation("Xyz", "123"));*/
+
+        List<QuoteSpace> quoteSpace = organisationRepository.quoteSpace(org.getDistinguishedName());
+		return new ResponseEntity<List<QuoteSpace>>(quoteSpace, HttpStatus.CREATED);
 	}
 
 	// -------------------Retrieve All Users---------------------------------------------

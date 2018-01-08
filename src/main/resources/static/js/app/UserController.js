@@ -11,9 +11,11 @@ angular.module('crudApp').controller('UserController',
         self.org = {};
         self.orgsdemo=[];
         self.orgbases = [];
+        $scope.quotes = [];
 
         self.submit = submit;
         self.getAllOrgs = getAllOrgs;
+        self.getQuotes = getQuotes;
         self.getDemoOrgs = getDemoOrgs;
         self.getBases = getBases;
         self.getAllUsers = getAllUsers;
@@ -104,6 +106,10 @@ angular.module('crudApp').controller('UserController',
             return UserService.getAllOrgs();
         }
 
+        function getQuotes(){
+            return $scope.quotes;
+        }
+
         function getDemoOrgs(){
             return UserService.getDemoOrgs();
         }
@@ -116,7 +122,7 @@ angular.module('crudApp').controller('UserController',
                         self.successMessage = 'Demo DB load successfully';
                         self.errorMessage='';
                         self.done = true;
-                        self.orgbases=response;
+                        $scope.quotes=response.data;
                         $scope.myForm.$setPristine();
                     },
                     function (errResponse) {
@@ -125,7 +131,7 @@ angular.module('crudApp').controller('UserController',
                         self.successMessage='';
                     }
                 );
-            $location.path("/listdemo");
+            $location.path("/listquotes");
         }
 
         function getAllUsers(){

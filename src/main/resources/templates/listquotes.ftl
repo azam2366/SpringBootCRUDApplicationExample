@@ -1,7 +1,7 @@
 <div class="generic-container">
     <div class="panel panel-default">
         <!-- Default panel contents -->
-        <div class="panel-heading"><span class="lead">List of Orgs </span></div>
+        <div class="panel-heading"><span class="lead">List Quote Space of Org </span></div>
 		<div class="panel-body">
 			<div class="table-responsive">
                 <div class="alert alert-info">
@@ -14,7 +14,7 @@
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                            <input type="text" class="form-control" placeholder="Search da Orgs" ng-model="searchOrg">
+                            <input type="text" class="form-control" placeholder="Search da Quote" ng-model="searchQuotes">
                         </div>
                     </div>
                 </form>
@@ -22,24 +22,18 @@
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th><a href="#" ng-click="sort('displayName')">
-                            Display name <span ng-show="sortType == 'displayName' && !sortReverse" class="fa fa-caret-down"></span>
-                            <span ng-show="sortType == 'displayName' && sortReverse" class="fa fa-caret-up"></span></a></th>
-                        <th><a href="#" ng-click="sort('distinguishedName')">
-                            Distinguished name <span ng-show="sortType == 'distinguishedName' && !sortReverse" class="fa fa-caret-down"></span>
-                            <span ng-show="sortType == 'distinguishedName' && sortReverse" class="fa fa-caret-up"></span></a></th>
-                        <th width="100"></th>
+                        <th><a href="#" ng-click="sort('user')">
+                            User <span ng-show="sortType == 'user' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'user' && sortReverse" class="fa fa-caret-up"></span></a></th>
+                        <th><a href="#" ng-click="sort('diskspaceused')">
+                            Disk Space Used <span ng-show="sortType == 'diskspaceused' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'diskspaceused' && sortReverse" class="fa fa-caret-up"></span></a></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr dir-paginate="o in ctrl.getAllOrgs() | orderBy:sortType:sortReverse | filter:searchOrg | itemsPerPage: pageSize">
-                        <td>{{o.displayName}}</td>
-                        <td>{{o.distinguishedName}}</td>
-                        <td>
-                            <button type="button" ng-click="ctrl.getBases(o)" class="btn btn-success custom-width">
-                                Quotes
-                            </button>
-                        </td>
+                    <tr dir-paginate="o in ctrl.getQuotes() | orderBy:sortType:sortReverse | filter:searchQuotes | itemsPerPage: pageSize">
+                        <td>{{o.user}}</td>
+                        <td>{{o.diskspaceused}}</td>
                     </tr>
                     </tbody>
                 </table>

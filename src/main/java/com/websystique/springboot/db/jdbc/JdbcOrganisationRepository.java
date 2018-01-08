@@ -39,7 +39,7 @@ public class JdbcOrganisationRepository implements OrganisationRepository {
 
 	public List<QuoteSpace> quoteSpace(String distinguishedName) {
 		return jdbcTemplate.query(
-				"select user, ROUND (DiskSpaceUsed/1024/1024, 2) from QuoteSpace where user in (SELECT sAMAccountName FROM ADusers WHERE DistinguishedName = ?) order by DiskSpaceUsed",
+				"select user, ROUND (DiskSpaceUsed/1024/1024, 2) as diskspaceused from QuoteSpace where user in (SELECT sAMAccountName FROM ADusers WHERE DistinguishedName = ?) order by DiskSpaceUsed",
 				new QuoteSpaceRowMapper(), distinguishedName);	}
 
 	private static final class OrganisationRowMapper implements RowMapper<Organisation> {
